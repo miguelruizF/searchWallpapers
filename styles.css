@@ -10,3 +10,10 @@ body{
     font-size: 100%;
     list-style-type: none;
 }
+
+#header{
+    background-image: url(imgs/backg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    mask-image: linear-gradient(white 80%, transparent);
+    }
