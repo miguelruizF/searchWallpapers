@@ -1,4 +1,4 @@
-const API_KEY = 'Ch2f27qu0nmvSC1mDMjbajaLDB86m6dS';
+const API_KEY = 'YTAOCcimduPb1D1DcXbbNzkDoKYI1DTj';
 const d = document;
 const resultado = d.querySelector("#resultados");
 const paginacion = d.querySelector("#paginacion");
@@ -14,6 +14,23 @@ function validarFormulario(e){
     const terminoBusqueda = d.querySelector("#default-search").value;
     // console.log(terminoBusqueda);
     if(terminoBusqueda === ""){
-        
+        alert("Debes ingresar un termino");
+        return;
     }
+
+    //Funcion buscar imagenes
+    buscarImagenes();
+}
+
+function buscarImagenes() {
+    const termino = d.querySelector('#default-search').value;
+    const key = API_KEY;
+    const url = `https://api.giphy.com/v1/stickers/search?api_key=${key}&q=${termino}`;
+    // console.log(url);
+    //Fetch a la url
+    fetch(url)
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+            console.log(resultado);
+        })
 }
