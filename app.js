@@ -26,13 +26,13 @@ function validarFormulario(e){
     buscarImagenes();
 }
 
-function buscarImagenes() {
+async function buscarImagenes() {
     const termino = d.querySelector('#default-search').value;
     const key = API_KEY;
     const url = `https://api.giphy.com/v1/stickers/search?api_key=${key}&q=${termino}&limit=${limiteImages}&offset=${paginaActual}`; 
     // console.log(url);
     //Fetch a la url
-    fetch(url)
+    /* fetch(url)
         .then(respuesta => respuesta.json())
         .then(resultado => {
             //console.log(resultado)
@@ -40,7 +40,17 @@ function buscarImagenes() {
             // console.log(resultado.pagination.total_count)
             const {data} = resultado;
             mostrarImagenes(data)
-        })
+        }) */
+
+    try {
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+        totalPaginas = calcularPaginas(resultado.pagination.total_count)
+        const {data} = resultado;
+        mostrarImagenes(data)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 //Generador de paginas
